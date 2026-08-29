@@ -1,14 +1,19 @@
-/**
- * @file index.js
- * Root exports for @krono/raft package.
- */
-
-export * from './types.js';
 export * from './election_timer.js';
-export * from './persistent_state.js';
-export * from './replicated_log.js';
-export * from './peer_manager.js';
-export * from './linearizable_read.js';
-export * from './snapshot_manager.js';
+export * from './flow_control_window.js';
 export * from './joint_consensus.js';
+export * from './leader_lease_tracker.js';
+export * from './lease_read.js';
+export * from './linearizable_read.js';
+export * from './membership_state.js';
+export * from './multi_raft_group_manager.js';
+export * from './peer_manager.js';
+export * from './persistent_state.js';
+export * from './pipelined_appender.js';
+export * from './quorum_calculator.js';
 export * from './raft_node.js';
+export * from './replicated_log.js';
+export * from './snapshot_manager.js';
+export * from './snapshot_streaming_pipeline.js';
+export * from './state_machine_adapter.js';
+export * from './types.js';
+export * from './witness_node.js';
