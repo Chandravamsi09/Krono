@@ -1,0 +1,21 @@
+{
+  "name": "@krono/client",
+  "version": "1.0.0",
+  "description": "Ergonomic, high-throughput Client SDK for Krono Distributed Platform",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./producer": "./src/producer.js",
+    "./consumer": "./src/consumer.js",
+    "./workflow_builder": "./src/workflow_builder.js",
+    "./krono_client": "./src/krono_client.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/protocol": "*"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
