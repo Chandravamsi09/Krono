@@ -1,0 +1,26 @@
+{
+  "name": "@krono/raft",
+  "version": "1.0.0",
+  "description": "Custom high-performance Raft consensus engine with Pre-Vote, Pipelined Replication, and Linearizable Reads for Krono",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./types": "./src/types.js",
+    "./election_timer": "./src/election_timer.js",
+    "./persistent_state": "./src/persistent_state.js",
+    "./replicated_log": "./src/replicated_log.js",
+    "./peer_manager": "./src/peer_manager.js",
+    "./linearizable_read": "./src/linearizable_read.js",
+    "./raft_node": "./src/raft_node.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/protocol": "*",
+    "@krono/storage": "*",
+    "@krono/lsm": "*"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
