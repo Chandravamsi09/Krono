@@ -1,0 +1,21 @@
+{
+  "name": "@krono/cluster",
+  "version": "1.0.0",
+  "description": "SWIM Gossip failure detector, Consistent Hashing ring with virtual nodes, and distributed lease manager for Krono",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./swim_detector": "./src/swim_detector.js",
+    "./consistent_hash_ring": "./src/consistent_hash_ring.js",
+    "./lease_manager": "./src/lease_manager.js",
+    "./cluster_coordinator": "./src/cluster_coordinator.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/protocol": "*"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
