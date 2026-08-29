@@ -1,0 +1,21 @@
+{
+  "name": "@krono/worker",
+  "version": "1.0.0",
+  "description": "Sandboxed worker daemon, process supervisor, and Chase-Lev work-stealing executor for Krono",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./chase_lev_deque": "./src/chase_lev_deque.js",
+    "./process_supervisor": "./src/process_supervisor.js",
+    "./task_executor": "./src/task_executor.js",
+    "./worker_daemon": "./src/worker_daemon.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/protocol": "*"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
