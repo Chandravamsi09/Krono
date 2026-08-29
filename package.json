@@ -1,0 +1,35 @@
+{
+  "name": "krono-platform",
+  "version": "1.0.0",
+  "description": "Krono: Enterprise Distributed Event Broker, Raft Consensus & Fault-Tolerant DAG Job Scheduling Engine",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "node --test tests/**/*.test.js packages/*/tests/**/*.test.js",
+    "test:unit": "node --test packages/*/tests/**/*.test.js",
+    "test:chaos": "node --test tests/chaos/*.test.js",
+    "start:server": "node apps/server/dist/index.js",
+    "start:worker": "node apps/worker/dist/index.js",
+    "start:cli": "node apps/cli/dist/index.js",
+    "dev:dashboard": "npm run dev --workspace=apps/dashboard"
+  },
+  "keywords": [
+    "distributed-systems",
+    "raft-consensus",
+    "event-broker",
+    "dag-scheduler",
+    "lsm-tree",
+    "swim-gossip",
+    "chaos-engineering"
+  ],
+  "author": "Chandra Vamsi <chandravamsi09>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

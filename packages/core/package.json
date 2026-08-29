@@ -1,0 +1,23 @@
+{
+  "name": "@krono/core",
+  "version": "1.0.0",
+  "description": "Core primitives, data structures, vector clocks, and byte buffers for Krono Distributed Platform",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./crc32": "./src/crc32.js",
+    "./varint": "./src/varint.js",
+    "./byte_buffer": "./src/byte_buffer.js",
+    "./vector_clock": "./src/vector_clock.js",
+    "./ring_buffer": "./src/ring_buffer.js",
+    "./priority_queue": "./src/priority_queue.js",
+    "./bitset": "./src/bitset.js",
+    "./uuid": "./src/uuid.js",
+    "./errors": "./src/errors.js",
+    "./logger": "./src/logger.js"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
