@@ -1,0 +1,24 @@
+{
+  "name": "@krono/server",
+  "version": "1.0.0",
+  "description": "Krono Cluster Server Daemon",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "krono-server": "./src/index.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/protocol": "*",
+    "@krono/storage": "*",
+    "@krono/lsm": "*",
+    "@krono/raft": "*",
+    "@krono/cluster": "*",
+    "@krono/scheduler": "*",
+    "@krono/worker": "*",
+    "@krono/gateway": "*"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}

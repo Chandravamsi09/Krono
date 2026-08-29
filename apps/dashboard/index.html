@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krono Distributed Systems Platform | Observability & Control Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace']
+            },
+            colors: {
+              krono: {
+                dark: '#0B0F19',
+                card: '#111827',
+                border: '#1F2937',
+                accent: '#6366F1',
+                cyan: '#06B6D4',
+                emerald: '#10B981',
+                rose: '#F43F5E',
+                amber: '#F59E0B'
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-[#0B0F19] text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
