@@ -102,13 +102,19 @@ export class BitSet {
   }
 
   toBuffer() {
-    return Buffer.from(this.words.buffer, this.words.byteOffset, this.words.byteLength);
+    const buf = Buffer.allocUnsafe(this.words.length * 4);
+    for (let i = 0; i < this.words.length; i++) {
+      buf.writeUInt32LE(this.words[i], i * 4);
+    }
+    return buf;
   }
 
   static fromBuffer(buffer, size) {
     const bitset = new BitSet(size);
-    const src = new Uint32Array(buffer.buffer, buffer.byteOffset, Math.min(bitset.words.length, Math.floor(buffer.byteLength / 4)));
-    bitset.words.set(src);
+    const wordCount = Math.min(bitset.words.length, Math.floor(buffer.length / 4));
+    for (let i = 0; i < wordCount; i++) {
+      bitset.words[i] = buffer.readUInt32LE(i * 4);
+    }
     return bitset;
   }
 }

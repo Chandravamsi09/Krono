@@ -1,0 +1,23 @@
+{
+  "name": "@krono/lsm",
+  "version": "1.0.0",
+  "description": "High-throughput LSM-Tree state storage engine with SkipList MemTable, SSTables, Bloom Filters, and Leveled Compaction",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./bloom_filter": "./src/bloom_filter.js",
+    "./skiplist": "./src/skiplist.js",
+    "./memtable": "./src/memtable.js",
+    "./sstable": "./src/sstable.js",
+    "./compactor": "./src/compactor.js",
+    "./lsm_tree": "./src/lsm_tree.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/storage": "*"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
