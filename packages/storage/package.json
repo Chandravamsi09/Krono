@@ -1,0 +1,23 @@
+{
+  "name": "@krono/storage",
+  "version": "1.0.0",
+  "description": "High-performance append-only segmented commit log, sparse indexing, and partition storage for Krono",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./record_header": "./src/record_header.js",
+    "./sparse_index": "./src/sparse_index.js",
+    "./time_index": "./src/time_index.js",
+    "./log_segment": "./src/log_segment.js",
+    "./segmented_log": "./src/segmented_log.js",
+    "./partition_store": "./src/partition_store.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/protocol": "*"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
