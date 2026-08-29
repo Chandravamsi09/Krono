@@ -1,123 +1,91 @@
 # Krono: Distributed Fault-Tolerant Event Broker & Job Scheduling Platform
 
-<p align="center">
-  <strong>A resilient, high-throughput distributed event streaming and DAG workflow orchestration platform built with custom Raft consensus, append-only segmented commit logs, LSM-Tree state store, SWIM failure detector, and a real-time reactive admin dashboard.</strong>
-</p>
+Krono is an enterprise-grade distributed event streaming broker and fault-tolerant DAG job scheduling engine engineered with custom Raft consensus, append-only segmented commit logs, LSM-Tree key-value store, SWIM failure detector, sandboxed work-stealing worker pool, and a real-time reactive Web Dashboard.
 
 ---
 
-## 🌟 Key Architecture & Capabilities
+## Installation
 
-- **Custom Raft Consensus Plane**: Leader election, pipelined log replication, joint consensus dynamic membership ($C_{old,new}$), pre-vote protocol, and asynchronous snapshotting.
-- **High-Throughput Storage Subsystem**: Memory-mapped append-only commit logs, sparse binary offset/time indexing, CRC32 data integrity validation, and segment retention.
-- **LSM-Tree Key-Value State Store**: Concurrent SkipList MemTable, leveled SSTables, Bloom filters with Kirsch-Mitzenmacher optimization, and background compaction.
-- **SWIM Gossip Failure Detection**: Indirect `ping-req` proxying, exponential suspicion decay, and death certificate dissemination.
-- **Consistent Hashing Ring**: 128 virtual nodes per host on a 32-bit CRC ring ensuring minimal data migration on topology scaling.
-- **Distributed DAG Workflow Engine**: Kahn's topological sorting, cycle detection, Saga compensation rollbacks, and Chase-Lev lock-free work-stealing worker pool.
-- **Ingress Gateway & Multi-Language SDK**: REST API, bidirectional WebSocket telemetry hub, API Key & JWT token verification, and client SDKs.
-- **Real-Time Admin Dashboard**: React 18 + Vite + Tailwind CSS interactive cluster topology canvas, Raft log inspector, and Jepsen chaos engineering studio.
+To install and set up Krono locally, clone the repository and install the dependencies:
 
----
-
-## 🏗 Subsystem Architecture
-
-```
-                                  +-----------------------+
-                                  |   React 18 Dashboard  |
-                                  |   (Canvas Topology)   |
-                                  +-----------+-----------+
-                                              |
-                                              v
-+-----------------------------------------------------------------------------------------+
-|                                    Krono API Gateway                                    |
-|             (REST Endpoints, WebSocket Hub, Auth RBAC, Token Bucket Rate Limiter)       |
-+-----------------------------------------------------------------------------------------+
-       |                                      |                                   |
-       v                                      v                                   v
-+---------------+             +-------------------------------+           +---------------+
-| Raft Engine   |             | Distributed Event Storage     |           | DAG Scheduler |
-| - Pre-Vote    |             | - Append-Only Segmented WAL   |           | - Kahn's Sort |
-| - Replication |             | - Sparse Binary Indexing      |           | - Sagas       |
-| - Snapshots   |             | - LSM-Tree (MemTable/SSTable) |           | - DLQ / Jitter|
-+---------------+             +-------------------------------+           +---------------+
-       |                                      |                                   |
-       v                                      v                                   v
-+-----------------------------------------------------------------------------------------+
-|                            SWIM Gossip & Cluster Coordination                           |
-|       (Virtual Node Hash Ring, Node Health Heatmap, Epoch-Based Lease Fencing)          |
-+-----------------------------------------------------------------------------------------+
-                                              |
-                                              v
-                               +-----------------------------+
-                               |    Sandboxed Worker Fleet   |
-                               |  (Chase-Lev Work Stealing)  |
-                               +-----------------------------+
-```
-
----
-
-## 📦 Monorepo Package Hierarchy
-
-| Package / App | Description |
-| :--- | :--- |
-| **`@krono/core`** | CRC32, LEB128 Varint, Dynamic ByteBuffer, VectorClocks, RingBuffer, PriorityQueue, BitSet, UUIDv7 |
-| **`@krono/protocol`** | Binary wire protocol, frame codecs, CRC validation, consensus/broker/scheduler RPC serializers |
-| **`@krono/storage`** | Segmented log manager, sparse memory-mapped index, time index, retention policies, partition store |
-| **`@krono/lsm`** | LSM-Tree key-value engine, SkipList MemTable, SSTables, Bloom filters, leveled compactor |
-| **`@krono/raft`** | Raft consensus node, randomized election timer, pre-vote, log replication, linearizable reads |
-| **`@krono/cluster`** | SWIM Gossip failure detector, Consistent Hash Ring with vNodes, epoch-based fencing leases |
-| **`@krono/scheduler`** | DAG workflow compiler, Kahn's cycle detector, Saga compensations, dead-letter queue, priority queue |
-| **`@krono/worker`** | Sandboxed worker daemon, process supervisor, Chase-Lev work-stealing deque |
-| **`@krono/gateway`** | REST API server, WebSocket telemetry hub, auth tokens, rate limiter |
-| **`@krono/client`** | High-throughput client SDK for producers, consumers, and DAG workflow builders |
-| **`@krono/chaos`** | Jepsen-style network partition simulator, packet drops, latency injection, linearizability checker |
-| **`apps/server`** | Unified Krono cluster server daemon binary |
-| **`apps/dashboard`** | React 18 + Vite + Tailwind CSS live cluster topology and observability suite |
-
----
-
-## 🚀 Quickstart
-
-### Prerequisites
-- Node.js >= 20.0.0
-
-### 1. Run All Tests
 ```bash
-npm test
+# Clone the repository
+git clone https://github.com/Chandravamsi09/Krono.git
+cd Krono
+
+# Install dependencies across all monorepo workspaces
+npm install
 ```
 
-### 2. Run Jepsen Chaos Engineering Suite
+---
+
+## Dependencies
+
+- **Node.js**: `>= 20.0.0`
+- **NPM**: `>= 10.0.0`
+- **Optional**: Docker & Docker Compose (for containerized cluster execution)
+
+---
+
+## Build
+
+To compile and build all project artifacts and web dashboards:
+
 ```bash
-npm run test:chaos
+# Build the production React 18 dashboard bundle
+npm run build --workspace=apps/dashboard
+
+# Or using Makefile
+make build
 ```
 
-### 3. Run Benchmark Suite
+---
+
+## Run
+
+To launch Krono in various modes:
+
+### 1. Launch a Single Krono Node
 ```bash
-node benchmarks/throughput.js
+node apps/server/src/index.js
 ```
 
-### 4. Start Local 3-Node Cluster
+### 2. Launch a 3-Node Local Raft Cluster
 ```bash
 node scripts/cluster.js
 ```
 
-### 5. Launch Real-time Dashboard
+### 3. Launch the Real-Time Web Dashboard
 ```bash
 npm run dev:dashboard
 ```
-Open `http://localhost:3000` to inspect live cluster consensus and DAG workflows.
+Open `http://localhost:3000` to interact with the live cluster topology canvas and consensus inspector.
+
+### 4. Run Test Suites & Chaos Verification
+```bash
+# Run all unit tests
+npm test
+
+# Run Jepsen-style network partition chaos tests
+npm run test:chaos
+```
+
+### 5. Run Performance Benchmarks
+```bash
+node benchmarks/throughput.js
+```
 
 ---
 
-## 💡 Code Examples
+## Usage
 
-### 1. Producing & Consuming Events (Client SDK)
+### Event Streaming (Producer & Consumer SDK)
 ```javascript
 import { KronoClient } from '@krono/client';
 
 const client = new KronoClient({ gatewayUrl: 'http://localhost:8080' });
 
-// Produce event
+// Produce an event
 const producer = client.createProducer();
 await producer.send('orders.events', 'order-101', { amount: 250.00, status: 'PAID' });
 
@@ -127,23 +95,35 @@ const records = await consumer.poll();
 console.log('Received records:', records);
 ```
 
-### 2. Submitting a Distributed DAG Workflow
+### Distributed DAG Workflow Scheduling
 ```javascript
 import { KronoClient } from '@krono/client';
 
 const client = new KronoClient();
 
-const job = client.workflow('ML Training Pipeline')
+const workflow = client.workflow('Analytics Pipeline')
   .setPriority(10)
-  .addTask({ id: 'fetch-data', command: 'node', args: ['fetch.js'], dependsOn: [] })
-  .addTask({ id: 'preprocess', command: 'node', args: ['clean.js'], dependsOn: ['fetch-data'] })
-  .addTask({ id: 'train-model', command: 'node', args: ['train.js'], dependsOn: ['preprocess'] });
+  .addTask({ id: 'extract', command: 'node', args: ['extract.js'], dependsOn: [] })
+  .addTask({ id: 'transform', command: 'node', args: ['transform.js'], dependsOn: ['extract'] })
+  .addTask({ id: 'load', command: 'node', args: ['load.js'], dependsOn: ['transform'] });
 
-const result = await client.submitWorkflow(job);
-console.log('Workflow submitted:', result.jobId);
+const job = await client.submitWorkflow(workflow);
+console.log('Submitted Job ID:', job.jobId);
+```
+
+### Distributed Key-Value Store (LSM-Tree)
+```javascript
+import { KronoClient } from '@krono/client';
+
+const client = new KronoClient();
+
+// Put & Get
+await client.kvPut('user:1001', JSON.stringify({ name: 'Alice', role: 'admin' }));
+const val = await client.kvGet('user:1001');
+console.log('Fetched Value:', val);
 ```
 
 ---
 
-## 📜 License
-Apache-2.0 License. Genuine, authentic, zero copy-paste code.
+## License
+Proprietary. All rights reserved.

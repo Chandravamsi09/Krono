@@ -1,9 +1,14 @@
-/**
- * @file index.js
- * Root exports for @krono/protocol package.
- */
-
+export * from './auth_handshake_codec.js';
+export * from './binary_schema.js';
+export * from './compression_frame_codec.js';
 export * from './constants.js';
+export * from './control_codec.js';
 export * from './frame.js';
 export * from './frame_codec.js';
 export * from './messages/index.js';
+export * from './multiplexed_rpc.js';
+export * from './query_codec.js';
+export * from './schema_registry.js';
+export * from './stream_multiplexer.js';
+export * from './tcp_framing_pipeline.js';
+export * from './telemetry_wire_codec.js';

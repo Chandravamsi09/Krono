@@ -28,7 +28,7 @@
     "chaos-engineering"
   ],
   "author": "Chandra Vamsi <chandravamsi09>",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "engines": {
     "node": ">=20.0.0"
   }
