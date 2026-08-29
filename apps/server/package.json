@@ -20,5 +20,7 @@
   },
   "scripts": {
     "start": "node src/index.js"
-  }
+  },
+  "license": "UNLICENSED",
+  "private": true
 }

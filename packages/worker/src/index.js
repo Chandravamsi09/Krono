@@ -1,9 +1,14 @@
-/**
- * @file index.js
- * Root exports for @krono/worker package.
- */
-
+export * from './artifact_manager.js';
+export * from './cgroup_monitor.js';
 export * from './chase_lev_deque.js';
+export * from './container_executor.js';
+export * from './heartbeat_client.js';
 export * from './process_supervisor.js';
+export * from './process_watchdog.js';
+export * from './stream_artifact_collector.js';
 export * from './task_executor.js';
+export * from './task_sandbox_environment.js';
+export * from './wasm_executor.js';
+export * from './wasm_runtime_host.js';
 export * from './worker_daemon.js';
+export * from './worker_metrics_agent.js';
