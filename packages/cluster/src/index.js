@@ -1,9 +1,14 @@
-/**
- * @file index.js
- * Root exports for @krono/cluster package.
- */
-
-export * from './swim_detector.js';
-export * from './consistent_hash_ring.js';
-export * from './lease_manager.js';
+export * from './anti_entropy.js';
 export * from './cluster_coordinator.js';
+export * from './cluster_membership_log.js';
+export * from './consistent_hash_ring.js';
+export * from './failure_detector_extended.js';
+export * from './gossip_disseminator.js';
+export * from './gossip_message_router.js';
+export * from './lease_manager.js';
+export * from './node_health_matrix.js';
+export * from './partition_balancer.js';
+export * from './rack_placement_engine.js';
+export * from './split_brain_guard.js';
+export * from './swim_detector.js';
+export * from './vnode_ring.js';
