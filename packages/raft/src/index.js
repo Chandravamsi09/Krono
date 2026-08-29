@@ -9,4 +9,6 @@ export * from './persistent_state.js';
 export * from './replicated_log.js';
 export * from './peer_manager.js';
 export * from './linearizable_read.js';
+export * from './snapshot_manager.js';
+export * from './joint_consensus.js';
 export * from './raft_node.js';
