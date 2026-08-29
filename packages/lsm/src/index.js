@@ -1,11 +1,17 @@
-/**
- * @file index.js
- * Root exports for @krono/lsm package.
- */
-
+export * from './block_builder.js';
 export * from './bloom_filter.js';
-export * from './skiplist.js';
-export * from './memtable.js';
-export * from './sstable.js';
+export * from './compaction_picker.js';
 export * from './compactor.js';
 export * from './lsm_tree.js';
+export * from './memtable.js';
+export * from './memtable_wal.js';
+export * from './merge_operator.js';
+export * from './point_lookup_optimizer.js';
+export * from './prefix_filter.js';
+export * from './range_scan_pipeline.js';
+export * from './skiplist.js';
+export * from './sst_block_cache.js';
+export * from './sstable.js';
+export * from './sstable_iterator.js';
+export * from './tiered_compaction_pipeline.js';
+export * from './transaction_journal.js';
