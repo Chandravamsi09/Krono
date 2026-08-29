@@ -1,0 +1,21 @@
+{
+  "name": "@krono/chaos",
+  "version": "1.0.0",
+  "description": "Jepsen-style Chaos Engineering, Network Partition Simulator, and Linearizability Invariants Checker for Krono",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./network_partition_simulator": "./src/network_partition_simulator.js",
+    "./linearizability_checker": "./src/linearizability_checker.js",
+    "./crash_fault_injector": "./src/crash_fault_injector.js"
+  },
+  "dependencies": {
+    "@krono/core": "*",
+    "@krono/protocol": "*",
+    "@krono/raft": "*"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.js"
+  }
+}
