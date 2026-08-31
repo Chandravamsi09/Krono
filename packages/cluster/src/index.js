@@ -2,6 +2,7 @@ export * from './anti_entropy.js';
 export * from './cluster_coordinator.js';
 export * from './cluster_membership_log.js';
 export * from './consistent_hash_ring.js';
+export * from './distributed_lock_manager.js';
 export * from './failure_detector_extended.js';
 export * from './gossip_disseminator.js';
 export * from './gossip_message_router.js';
