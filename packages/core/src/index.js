@@ -19,6 +19,7 @@ export * from './murmur3_128.js';
 export * from './priority_queue.js';
 export * from './rate_limiters.js';
 export * from './ring_buffer.js';
+export * from './subsystem_base.js';
 export * from './thread_affinity.js';
 export * from './uuid.js';
 export * from './varint.js';
